@@ -10,12 +10,22 @@ export interface EnvironmentSettings {
 
 export const DefaultEnvironmentSettingsPerAccount: Record<string, EnvironmentSettings> = {
   // ** DEV ACCOUNT **
-  '<your-account-id>': {
+  '<your-dev-account-id>': {
     logFullEvents: true,
     logLevel: 'DEBUG',
     logRetention: RetentionDays.ONE_WEEK,
     additionalDynamoDbOptions: {
       removalPolicy: RemovalPolicy.DESTROY
+    }
+  },
+  // ** PROD ACCOUNT **
+  '<your-production-account-id>': {
+    // Set this to false once traffic ramps up
+    logFullEvents: true,
+    logLevel: 'INFO',
+    logRetention: RetentionDays.ONE_YEAR,
+    additionalDynamoDbOptions: {
+      removalPolicy: RemovalPolicy.RETAIN
     }
   }
 };
